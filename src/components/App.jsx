@@ -1,6 +1,7 @@
 import { buildQueries } from '@testing-library/react';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { GlobalStyle } from './GlobalStyle';
 
 import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 import Section from './Section/Section';
@@ -53,13 +54,11 @@ export class App extends React.Component {
     return (
       <div
         style={{
-          height: '50vh',
+          // height: '50vh',
           display: 'flex',
           flexDirection: 'column',
-          // justifyContent: 'center',
-          fontSize: 14,
+          fontSize: 16,
           color: '#010101',
-          backgroundColor: '#ffff66',
         }}
       >
         <Section title="Please leave feedback">
@@ -76,11 +75,12 @@ export class App extends React.Component {
               good={good}
               neutral={neutral}
               bad={bad}
-              total={this.countTotalFeedback}
-              positivePercentage={this.countPositiveFeedbackPercentage}
+              total={this.countTotalFeedback()}
+              positivePercentage={this.countPositiveFeedbackPercentage()}
             />
           )}
         </Section>
+        <GlobalStyle />
       </div>
     );
   }

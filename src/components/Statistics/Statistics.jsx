@@ -1,17 +1,18 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import { StatisticsContainer, StatisticsData } from './Statistics.styled';
 
 export const Statistics = ({good, neutral, bad, total, positivePercentage}) => {
     return(
-        <div className="StatisticsContainer">
-             <p className="StatisticsData">Good: {good}</p>
-          <p className="StatisticsData">Neutral: {neutral}</p>
-          <p className="StatisticsData">Bad: {bad}</p>
-          <p className="StatisticsData">Total: {total}</p>
-          <p className="StatisticsData">
+        <StatisticsContainer>
+             <StatisticsData>Good: {good}</StatisticsData>
+          <StatisticsData>Neutral: {neutral}</StatisticsData>
+          <StatisticsData>Bad: {bad}</StatisticsData>
+          <StatisticsData>Total: {total}</StatisticsData>
+          <StatisticsData>
             Positive feedback: {positivePercentage}%
-          </p>
-        </div>        
+          </StatisticsData>
+        </StatisticsContainer>        
     );
 };
 

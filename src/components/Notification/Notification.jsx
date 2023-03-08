@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {NotificationContainer } from './Notification.styled';
 
 export const Notification = ({ message }) => {
   return (
-    <div className="NotificationContainer">
+    <NotificationContainer>
       <p>{message}</p>
-    </div>
+    </NotificationContainer>
   );
 };
 
