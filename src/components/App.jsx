@@ -1,5 +1,11 @@
+import { buildQueries } from '@testing-library/react';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
+
+import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
+import Section from './Section/Section';
+import Notification from './Notification/Notification';
+import Statistics from './Statistics/Statistics';
 
 export class App extends React.Component {
   state = {
@@ -45,42 +51,36 @@ export class App extends React.Component {
   render() {
     const { good, neutral, bad } = this.state;
     return (
-      <div className="FeedbackContainer">
-        <h2 className="FeedbackContainerTitle">Please leave feedback</h2>
-        <div className="FeedbackButtons">
-          <button
-            type="button"
-            className="FeedbackButtonGood"
-            data-option="good"
-            onClick={this.handleFeedback}
-          >
-            Good
-          </button>
-          <button
-            type="button"
-            className="FeedbackButtonNeutral"
-            data-option="neutral"
-            onClick={this.handleFeedback}
-          >
-            Neutral
-          </button>
-          <button
-            type="button"
-            className="FeedbackButtonBad"
-            data-option="bad"
-            onClick={this.handleFeedback}
-          >
-            Bad
-          </button>
-        </div>
-        <h3 className="StatisticsTitle">Statistics</h3>
-        <p className="StatisticsData">Good: {this.state.good}</p>
-        <p className="StatisticsData">Neutral: {this.state.neutral}</p>
-        <p className="StatisticsData">Bad: {this.state.bad}</p>
-        <p className="StatisticsData">Total: {this.countTotalFeedback()}</p>
-        <p className="StatisticsData">
-          Positive feedback: {this.countPositiveFeedbackPercentage()}%
-        </p>
+      <div
+        style={{
+          height: '50vh',
+          display: 'flex',
+          flexDirection: 'column',
+          // justifyContent: 'center',
+          fontSize: 14,
+          color: '#010101',
+          backgroundColor: '#ffff66',
+        }}
+      >
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={Object.keys(this.state)}
+            onLeaveFeedback={this.handleFeedback}
+          />
+        </Section>
+        <Section title="Statistics">
+          {this.countTotalFeedback() === 0 ? (
+            <Notification message="There is no feedback" />
+          ) : (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={this.countTotalFeedback}
+              positivePercentage={this.countPositiveFeedbackPercentage}
+            />
+          )}
+        </Section>
       </div>
     );
   }
